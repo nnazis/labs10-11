@@ -42,9 +42,9 @@ pygame.display.set_caption("Snake Game")
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 24)
 
-username = input("Введите имя пользователя: ")
+username = input("Input username")
 user_id, level, previous_score = get_or_create_user(username)
-print(f"Привет, {username}! Текущий уровень: {level}, Предыдущий счёт: {previous_score}")
+print(f"Hello, {username}! Current level: {level}, Previous score: {previous_score}")
 
 levels = {
     1: {"speed": 10, "walls": []},
@@ -76,7 +76,7 @@ while running:
             elif event.key == pygame.K_RIGHT and direction != (-10, 0):
                 direction = (10, 0)
             elif event.key == pygame.K_p:
-                print("⏸️ Игра на паузе. Прогресс сохранён.")
+                print("Game is on pause. Saved.")
                 save_score(user_id, level, score)
                 running = False
 
@@ -94,13 +94,13 @@ while running:
         snake.pop()
 
     if head in snake[1:] or head[0] < 0 or head[0] >= WIDTH or head[1] < 0 or head[1] >= HEIGHT:
-        print("💀 Game Over!")
+        print("Game Over!")
         save_score(user_id, level, score)
         break
 
     for wall in walls:
         if pygame.Rect(*wall).collidepoint(head):
-            print("💥 Удар о стену!")
+            print("Hit the wall!")
             save_score(user_id, level, score)
             running = False
             break
@@ -112,7 +112,7 @@ while running:
     for wall in walls:
         pygame.draw.rect(win, (100, 100, 100), wall)
 
-    score_text = font.render(f"Счёт: {score} | Уровень: {level}", True, (255, 255, 255))
+    score_text = font.render(f"Score: {score}  Level: {level}", True, (255, 255, 255))
     win.blit(score_text, (10, 10))
     pygame.display.update()
 
