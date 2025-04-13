@@ -3,9 +3,9 @@ import csv
 
 
 con = psycopg2.connect(
-    dbname='lesson_phone_book',
+    dbname='phone_book',
     user='postgres',
-    password='postgres',
+    password='KBTU_naz2024',
     host='localhost',
     port='5432'
 )
